@@ -2,10 +2,19 @@
 
 
 document.addEventListener('DOMContentLoaded', function(){
-    eventListeners() ; 
+    eventListeners() ;
+    
+    darkMode();
 })
 
 
+function darkMode() {
+  const botonDarkMode =  document.querySelector('.dark-mode-boton');
+
+  botonDarkMode.addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode-boton')
+  })
+}
 
 function eventListeners() {
  const mobileMenu = document.querySelector('.mobile-menu') ; 
