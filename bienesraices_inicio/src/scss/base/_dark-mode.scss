@@ -1,4 +1,9 @@
 
+
+.mon {
+    background-color: black;
+}
+
 .dark-mode-boton {
     background-color: darken($grisOscuro, 10);
 
@@ -22,4 +27,8 @@
         filter: invert(100%);
     }
     }
+    
+.texto-nosotros blockquote { 
+color: $blanco;
+}
 }
