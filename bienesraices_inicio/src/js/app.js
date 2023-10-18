@@ -9,6 +9,26 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 function darkMode() {
+
+  const preferencesUser = window.matchMedia('(prefers-color-schema: dark)') ;  
+
+  //console.log(preferencesUser.matches)
+
+  if(preferencesUser.matches) {
+    document.body.classList.add('dark-mode-boton'); 
+  } else {
+    document.body.classList.remove('dark-mode-boton'); 
+  }
+
+  preferencesUser.addEventListener('change', function(){
+    if(preferencesUser.matches) {
+      document.body.classList.add('dark-mode-boton'); 
+    } else {
+      document.body.classList.remove('dark-mode-boton'); 
+    }
+  })
+
+
   const botonDarkMode =  document.querySelector('.dark-mode-boton');
 
   botonDarkMode.addEventListener('click', function() {
