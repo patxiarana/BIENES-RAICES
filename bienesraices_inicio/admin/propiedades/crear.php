@@ -15,6 +15,12 @@ require '../../includes/config/database.php';
 
 $errores = [] ; 
 
+$titulo ='' ; 
+$precio =  '' ;
+$descripcion =  '' ; 
+$wc =  '' ; 
+$estacionamiento =  '' ; 
+$vendedores_id =  '';
 
   //Ejecutar el codigo despues de que el usuario envia el formulario 
 
@@ -101,18 +107,18 @@ foreach($errores as $error) : ?>
 <legend>Informacion General</legend>
 
 <label for="titulo">Titulo:</label>
-<input type="text" id="titulo" name="titulo" placeholder="titulo de la propiedad...">
+<input type="text" id="titulo" name="titulo" placeholder="titulo de la propiedad..." value="<?php  echo $titulo;?>">
 
 
 <label for="precio">Precio:</label>
 
-<input  type="number" id="precio" name="precio" placeholder="precio de la propiedad...">
+<input  type="number" id="precio" name="precio" placeholder="precio de la propiedad..." value="<?php  echo $precio;?>">
 
 <label for="imagen">imagen:</label>
 <input type="file" id="imagen" accept="image/jpeg, image/png">
 
 <label for="Descripcion">Descripcion</label>
-<textarea  id="descripcion" name="descripcion" ></textarea>
+<textarea  id="descripcion" name="descripcion"><?php  echo $descripcion;?></textarea>
 </fieldset>
 
 <fieldset>
@@ -120,16 +126,16 @@ foreach($errores as $error) : ?>
 
 
    <label for="habitaciones">Habitaciones:</label>
-   <input type="number" name="habitaciones" id="habitaciones" placeholder="ej 3 ..." min="1" max="9" >
+   <input type="number" name="habitaciones" id="habitaciones" placeholder="ej 3 ..." min="1" max="9"  value="<?php  echo $habitaciones;?>">
 
 
    
    <label for="wc">Baños:</label>
-   <input type="number" id="wc" name="wc" placeholder="ej 2 ..." min="1" max="9" >
+   <input type="number" id="wc" name="wc" placeholder="ej 2 ..." min="1" max="9" value="<?php  echo $wc;?>">
 
 
    <label for="estacionamiento">Estacionamiento:</label>
-   <input type="number" name="estacionamiento" id="estacionamiento" placeholder="ej 2 ..." min="1" max="9" >
+   <input type="number" name="estacionamiento" id="estacionamiento" placeholder="ej 2 ..." min="1" max="9" value="<?php  echo $estacionamiento;?>">
 
 </fieldset>
 
@@ -137,8 +143,8 @@ foreach($errores as $error) : ?>
 <fieldset>
    <legend>Vendedor</legend>
 
-   <select name="vendedores_id">
-   <option value="" disabled selected>--Seleccione--</option>
+   <select name="vendedores_id" >
+   <option  disabled selected>--Seleccione--</option>
       <option value="1">Patxi</option>
       <option value="2" >Karen</option>
    </select>
