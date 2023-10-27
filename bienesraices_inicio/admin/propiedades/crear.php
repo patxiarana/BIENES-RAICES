@@ -36,14 +36,7 @@ $vendedores_id =  '';
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-
-$numero = "1hola" ; 
-$numero2 = 1 ; 
-
 //Sanitizar 
-
-
-   exit ; 
 
 $titulo =mysqli_real_escape_string($db,$_POST['titulo']) ; 
 $precio = mysqli_real_escape_string($db,$_POST['precio']);
@@ -54,8 +47,12 @@ $estacionamiento = mysqli_real_escape_string($db,$_POST['estacionamiento'] );
 $vendedores_id = mysqli_real_escape_string($db,$_POST['vendedores_id']) ;
 $creado =date('Y/m/d') ; 
 
+
+//Asignar file a una variable 
+
+$imagen = $_FILES['imagen'] ; 
 if(!$titulo) {
-$errores[] = "Debes añadir un titutlo" ; 
+$errores[] = "Debes añadir un titulo" ; 
 
 }  if(!$precio) {
    $errores[] = "Debes añadir un precio" ; 
@@ -69,7 +66,23 @@ $errores[] = "Debes añadir un titutlo" ;
    $errores[] = "Debes añadir la cantidad de estacionamientos" ;
 }  if(!$vendedores_id) {
    $errores[] = "Debes añadir el  vendedor" ; 
-}  ; 
+}  
+if(!$imagen['name']) {
+   $errores[] = 'La imagen es Obligatoria' ; 
+}; 
+
+//Validar por tamaño (100 kb maximo)
+
+$medida = 1000 * 100 ; 
+
+if($imagen["size"] > $medida) {
+$errores[] = 'La imagen es muy pesada' ; 
+} ; 
+
+
+
+
+
 /*
 echo  "<pre>" ; 
 
@@ -118,7 +131,7 @@ foreach($errores as $error) : ?>
 <?php endforeach; ?>
 
 
- <form class="formulario" method="POST" action="/admin/propiedades/crear.php">
+ <form class="formulario" method="POST" action="/admin/propiedades/crear.php" enctype="multipart/form-data">
 
 <fieldset> 
 <legend>Informacion General</legend>
@@ -132,7 +145,7 @@ foreach($errores as $error) : ?>
 <input  type="number" id="precio" name="precio" placeholder="precio de la propiedad..." value="<?php  echo $precio;?>">
 
 <label for="imagen">imagen:</label>
-<input type="file" id="imagen" accept="image/jpeg, image/png">
+<input type="file" id="imagen"  name="imagen"    accept="image/jpeg, image/png">
 
 <label for="Descripcion">Descripcion</label>
 <textarea  id="descripcion" name="descripcion"><?php  echo $descripcion;?></textarea>
