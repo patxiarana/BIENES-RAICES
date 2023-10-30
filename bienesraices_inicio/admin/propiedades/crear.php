@@ -96,6 +96,25 @@ echo "</pre>" ; */
 if(empty($errores)) {
 //Insertar en la base de datos 
 
+/**Subida De Archivos**/
+
+//Crear una carpeta  
+
+$carpetaImagenes = '../../imagenes' ; 
+
+
+if(!is_dir($carpetaImagenes)){
+mkdir($carpetaImagenes) ; 
+}
+
+//Subir imagen 
+
+move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . "/archivo.jpg ") ; 
+
+
+
+
+
 $query = " INSERT INTO propiedades (titulo,precio,descripcion,habitaciones,wc,estacionamiento,creado,vendedores_id) VALUES ('$titulo', '$precio', '$descripcion','$habitaciones','$wc','$estacionamiento','$creado','$vendedores_id') ";
 
 //echo $query ; 
