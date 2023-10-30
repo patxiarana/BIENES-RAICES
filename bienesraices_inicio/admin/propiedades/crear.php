@@ -100,16 +100,21 @@ if(empty($errores)) {
 
 //Crear una carpeta  
 
-$carpetaImagenes = '../../imagenes' ; 
+$carpetaImagenes = '../../imagenes/' ; 
 
 
 if(!is_dir($carpetaImagenes)){
 mkdir($carpetaImagenes) ; 
 }
 
+//Generar un nombre unico 
+
+$nombreImagen = md5(uniqid( rand() , true)) ; 
+
+
 //Subir imagen 
 
-move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . "/archivo.jpg ") ; 
+move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen . ".jpg") ; 
 
 
 
