@@ -25,6 +25,7 @@ $titulo ='' ;
 $precio =  '' ;
 $descripcion =  '' ; 
 $wc =  '' ; 
+$habitaciones = ''; 
 $estacionamiento =  '' ; 
 $vendedores_id =  '';
 
@@ -74,6 +75,7 @@ if(!$imagen['name']) {
 //Validar por tamaño (100 kb maximo)
 
 $medida = 1000 * 100 ; 
+$imagenName = $imagen['name'] ;  
 
 if($imagen["size"] > $medida) {
 $errores[] = 'La imagen es muy pesada' ; 
@@ -111,7 +113,6 @@ mkdir($carpetaImagenes) ;
 
 $nombreImagen = md5(uniqid( rand() , true)) ; 
 
-
 //Subir imagen 
 
 move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen . ".jpg") ; 
@@ -120,7 +121,7 @@ move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen . ".jpg
 
 
 
-$query = " INSERT INTO propiedades (titulo,precio,descripcion,habitaciones,wc,estacionamiento,creado,vendedores_id) VALUES ('$titulo', '$precio', '$descripcion','$habitaciones','$wc','$estacionamiento','$creado','$vendedores_id') ";
+$query = " INSERT INTO propiedades (titulo,precio,imagen,descripcion,habitaciones,wc,estacionamiento,creado,vendedores_id) VALUES ('$titulo', '$precio','$imagenName', '$descripcion','$habitaciones','$wc','$estacionamiento','$creado','$vendedores_id') ";
 
 //echo $query ; 
 
@@ -137,8 +138,6 @@ header('Location:/admin?resultado=1') ;
    require '../../includes/funciones.php' ; 
    incluirTemplate('header') ; 
 ?>
-
-
 <main class="contenedor-seccion">
  <h1>Crear</h1>
 
@@ -169,7 +168,7 @@ foreach($errores as $error) : ?>
 <input  type="number" id="precio" name="precio" placeholder="precio de la propiedad..." value="<?php  echo $precio;?>">
 
 <label for="imagen">imagen:</label>
-<input type="file" id="imagen"  name="imagen"    accept="image/jpeg, image/png">
+<input type="file" id="imagen"  name="imagen"  accept="image/jpeg, image/png">
 
 <label for="Descripcion">Descripcion</label>
 <textarea  id="descripcion" name="descripcion"><?php  echo $descripcion;?></textarea>

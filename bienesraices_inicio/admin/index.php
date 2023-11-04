@@ -54,7 +54,7 @@ $resultado = $_GET['resultado'] ?? null ;
    <tr>
       <td><?php echo $propiedades['id'] ; ?></td>
       <td><?php echo $propiedades['titulo'] ; ?></td>
-      <td> <img src="/imagenes/<?php echo $propiedades['titulo'] ; ?>" class="imagen-tabla"/>  </td>
+      <td> <img src="/imagenes/<?php echo $propiedades['imagen'] . '.jpg' ; ?>" class="imagen-tabla"/>  </td>
       <td>$ <?php echo $propiedades['precio'] ; ?></td>
       <td> <a href="#"class="boton-rojo-block">Eliminar</a>
       <a href="admin/propiedades/actualizar.php?id=<?php echo $propiedades['id'] ; ?>" class="boton-amarillo-block">Actualizar</a>

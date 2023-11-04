@@ -8,8 +8,8 @@ $id=filter_var($id, FILTER_VALIDATE_INT) ;
 
 if(!$id) {
    header('Location:/admin') ; 
-   
-   } 
+    } 
+ 
 
 
 
@@ -19,7 +19,13 @@ require '../../includes/config/database.php';
 
   $db  = conectarDB() ; 
 
-  //Consultar para obtener los vendedores 
+//Consulta para obtener los datos de la propiedad
+$consulta = "SELECT * FROM propiedades  WHERE id = $id " ; 
+$resultado = mysqli_query($db, $consulta) ; 
+$propiedad = mysqli_fetch_assoc($resultado); 
+
+
+  //Consultar para obtener los vendedores  
 
 $consulta = "SELECT * FROM vendedores" ; 
 $resultado = mysqli_query($db, $consulta); 
@@ -35,20 +41,18 @@ $resultado = mysqli_query($db, $consulta);
 
 $errores = [] ; 
 
-$titulo ='' ; 
-$precio =  '' ;
-$descripcion =  '' ; 
-$wc =  '' ; 
-$estacionamiento =  '' ; 
-$vendedores_id =  '';
-
-  //Ejecutar el codigo despues de que el usuario envia el formulario 
-
-
+$titulo = $propiedad['titulo'] ; 
+$precio =  $propiedad['precio'] ;
+$descripcion =  $propiedad['descripcion'] ; 
+$wc =  $propiedad['wc'] ; 
+$habitaciones =  $propiedad['habitaciones'] ; 
+$estacionamiento =   $propiedad['estacionamiento'] ;  ; 
+$vendedores_id =   $propiedad['vendedores_id'] ; ;
+$imagenPropiedad = $propiedad['imagen'] ; 
 
 
-
-  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//Ejecutar el codigo despues de que el usuario envia el formulario 
+ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 //Sanitizar 
 
@@ -184,6 +188,7 @@ foreach($errores as $error) : ?>
 
 <label for="imagen">imagen:</label>
 <input type="file" id="imagen"  name="imagen"    accept="image/jpeg, image/png">
+<img src="/imagenes/<?php echo $propiedad['imagen'] . '.jpg' ; ?>" class="imagen-small" alt="imgaen propiedad">
 
 <label for="Descripcion">Descripcion</label>
 <textarea  id="descripcion" name="descripcion"><?php  echo $descripcion;?></textarea>
