@@ -85,9 +85,6 @@ $errores[] = "Debes añadir un titulo" ;
 }  if(!$vendedores_id) {
    $errores[] = "Debes añadir el  vendedor" ; 
 }  
-if(!$imagen['name']) {
-   $errores[] = 'La imagen es Obligatoria' ; 
-}; 
 
 //Validar por tamaño (100 kb maximo)
 
@@ -118,7 +115,7 @@ if(empty($errores)) {
 
 //Crear una carpeta  
 
-$carpetaImagenes = '../../imagenes/' ; 
+/*$carpetaImagenes = '../../imagenes/' ; 
 
 
 if(!is_dir($carpetaImagenes)){
@@ -132,22 +129,21 @@ $nombreImagen = md5(uniqid( rand() , true)) ;
 
 //Subir imagen 
 
-move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen . ".jpg") ; 
+move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen . ".jpg") ; */
 
 
 
 
 
-$query = " INSERT INTO propiedades (titulo,precio,descripcion,habitaciones,wc,estacionamiento,creado,vendedores_id) VALUES ('$titulo', '$precio', '$descripcion','$habitaciones','$wc','$estacionamiento','$creado','$vendedores_id') ";
+$query = " UPDATE propiedades SET titulo = '$titulo' ,precio = '$precio' , descripcion = '$descripcion' , habitaciones = $habitaciones , wc = $wc , estacionamiento = $estacionamiento , vendedores_id = $vendedores_id WHERE id = $id";
 
 //echo $query ; 
-
 $resultado = mysqli_query($db, $query) ; 
 
 if($resultado) {
 //Redireccionar al usuario 
 
-header('Location:/admin?resultado=1') ; 
+header('Location:/admin?resultado=2') ; 
 } 
   }
 } 
@@ -173,7 +169,7 @@ foreach($errores as $error) : ?>
 <?php endforeach; ?>
 
 
- <form class="formulario" method="POST" action="/admin/propiedades/crear.php" enctype="multipart/form-data">
+ <form class="formulario" method="POST" enctype="multipart/form-data">
 
 <fieldset> 
 <legend>Informacion General</legend>
