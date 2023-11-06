@@ -121,7 +121,7 @@ move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen . ".jpg
 
 
 
-$query = " INSERT INTO propiedades (titulo,precio,imagen,descripcion,habitaciones,wc,estacionamiento,creado,vendedores_id) VALUES ('$titulo', '$precio','$imagenName', '$descripcion','$habitaciones','$wc','$estacionamiento','$creado','$vendedores_id') ";
+$query = " INSERT INTO propiedades (titulo,precio,imagen,descripcion,habitaciones,wc,estacionamiento,creado,vendedores_id) VALUES ('$titulo', '$precio','$nombreImagen', '$descripcion','$habitaciones','$wc','$estacionamiento','$creado','$vendedores_id') ";
 
 //echo $query ; 
 

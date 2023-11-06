@@ -111,16 +111,28 @@ echo "</pre>" ; */
 if(empty($errores)) {
 //Insertar en la base de datos 
 
-/**Subida De Archivos**/
+
 
 //Crear una carpeta  
 
-/*$carpetaImagenes = '../../imagenes/' ; 
+$carpetaImagenes = '../../imagenes/' ; 
 
 
 if(!is_dir($carpetaImagenes)){
 mkdir($carpetaImagenes) ; 
 }
+
+
+$nombreImagen = '' ; 
+
+//Eliminar la imagen previa 
+
+if($imagen['name']) {
+
+   unlink($carpetaImagenes . $propiedad['imagen'] . '.jpg') ; 
+
+   /**Subida De Archivos**/
+
 
 //Generar un nombre unico 
 
@@ -129,13 +141,16 @@ $nombreImagen = md5(uniqid( rand() , true)) ;
 
 //Subir imagen 
 
-move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen . ".jpg") ; */
+move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen . ".jpg") ;
+
+} else {
+   $nombreImagen = $propiedad['imagen'] ; 
+
+}
 
 
 
-
-
-$query = " UPDATE propiedades SET titulo = '$titulo' ,precio = '$precio' , descripcion = '$descripcion' , habitaciones = $habitaciones , wc = $wc , estacionamiento = $estacionamiento , vendedores_id = $vendedores_id WHERE id = $id";
+$query = " UPDATE propiedades SET titulo = '$titulo' ,precio = '$precio' , imagen = '$nombreImagen' , descripcion = '$descripcion' , habitaciones = $habitaciones , wc = $wc , estacionamiento = $estacionamiento , vendedores_id = $vendedores_id WHERE id = $id";
 
 //echo $query ; 
 $resultado = mysqli_query($db, $query) ; 
