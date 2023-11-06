@@ -22,6 +22,34 @@ $resultadoConsulta = mysqli_query($db, $query) ;
 //Muestra Mensaje condicional 
 $resultado = $_GET['resultado'] ?? null ;
 
+
+
+if($_SERVER['REQUEST_METHOD'] === 'POST') {
+$id = $_POST['id'] ; 
+$id = filter_var($id, FILTER_VALIDATE_INT) ; 
+
+if($id) {
+   //Eliminar el archivo 
+
+   $query = "SELECT imagen FROM propiedades WHERE id = $id" ;
+
+     $resultado = mysqli_query($db, $query) ; 
+     $propiedad = mysqli_fetch_assoc($resultado) ; 
+   
+     unlink('../imagenes/' . $propiedades['imagen'] . 'jpg') ; 
+
+
+   //Eliminar la propiedad
+   $query = "DELETE FROM propiedades WHERE id = $id" ; 
+   $resultado = mysqli_query($db, $query) ; 
+
+   if($resultado) {
+      header('locations:/admin?resultado=3') ; 
+   }
+}
+
+}
+
 //Inculye un template 
    require '../includes/funciones.php' ; 
    incluirTemplate('header') ; 
@@ -37,6 +65,8 @@ $resultado = $_GET['resultado'] ?? null ;
  <p class="alerta exito">Anuncio Creado Correctamente</p>
  <?php elseif(intval($resultado) == 2) :  ?>
    <p class="alerta exito">Anuncio Actualizado  Correctamente</p>
+   <?php elseif(intval($resultado) == 3) :  ?>
+   <p class="alerta exito">Anuncio Emilinado  Correctamente</p>
    <?php endif ;   ?>
 
 
@@ -60,7 +90,11 @@ $resultado = $_GET['resultado'] ?? null ;
       <td><?php echo $propiedades['titulo'] ; ?></td>
       <td> <img src="/imagenes/<?php echo $propiedades['imagen'] . '.jpg' ; ?>" class="imagen-tabla"/>  </td>
       <td>$ <?php echo $propiedades['precio'] ; ?></td>
-      <td> <a href="#"class="boton-rojo-block">Eliminar</a>
+      <td> 
+      <form method="POST" class="w-100" >
+      <input type="hidden"  name="id" value="<?php echo $propiedades['id'] ; ?>"/>
+      <input  type="submit" class="boton-rojo-block" value="Eliminar"/>
+      </form>
       <a href="admin/propiedades/actualizar.php?id=<?php echo $propiedades['id'] ; ?>" class="boton-amarillo-block">Actualizar</a>
    </td>
    </tr>
