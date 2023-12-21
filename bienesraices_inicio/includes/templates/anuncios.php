@@ -1,8 +1,10 @@
+
 <?php 
 //Importar la base de datos 
-require  __DIR__ . '/../config/database.php' ; 
-$db = conectarDB() ; 
+require  '../config/database.php' ; 
 
+$db = conectarDB(1) ; 
+$limite = 4  ; 
 //consultar 
 $query = "SELECT * FROM propiedades LIMIT $limite" ; 
 
@@ -11,7 +13,8 @@ $query = "SELECT * FROM propiedades LIMIT $limite" ;
 $resultado = mysqli_query($db, $query) ; 
 ?>
 <div class="contenedor-anuncios">
-    <?php while($propiedad = mysqli_fetch_assoc($resultado)) :  ?>
+    <?php 
+    while($propiedad = mysqli_fetch_assoc($resultado)) :  ?>
     <div class="anuncio">
         <picture>
         

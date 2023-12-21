@@ -17,6 +17,18 @@ function conectarDB($numero = null): mysqli
         $db = mysqli_connect('localhost', 'root', $password, 'bienesraices_crud');
 
 
+    } else if ($numero == 3) { 
+        require  '../../vendor/autoload.php';
+        $dotenv = Dotenv\Dotenv::createImmutable('../../');
+        $dotenv->load();
+        $password = $_ENV['PASSWORD'];
+        $db = mysqli_connect('localhost', 'root', $password, 'bienesraices_crud');
+    } else if ($numero == 4 ) {
+        require "./vendor/autoload.php";
+        $dotenv = Dotenv\Dotenv::createImmutable('./');
+        $dotenv->load();
+        $password = $_ENV['PASSWORD'];
+        $db = mysqli_connect('localhost', 'root', $password, 'bienesraices_crud');
     }
 
     else {
