@@ -1,4 +1,17 @@
 <?php
+
+session_start();
+
+$auth = $_SESSION['login'];
+
+if (!$auth) {
+
+   header('Location: /');
+};
+
+
+
+
 // Base de Datos 
 
 require '../../includes/config/database.php';

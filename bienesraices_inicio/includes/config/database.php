@@ -8,30 +8,26 @@ function conectarDB($numero = null): mysqli
         $dotenv->load();
         $password = $_ENV['PASSWORD'];
         $db = mysqli_connect('localhost', 'root', $password, 'bienesraices_crud');
-    } else if ($numero == 2) { 
+    } else if ($numero == 2) {
 
         require  'vendor/autoload.php';
         $dotenv = Dotenv\Dotenv::createImmutable('./');
         $dotenv->load();
         $password = $_ENV['PASSWORD'];
         $db = mysqli_connect('localhost', 'root', $password, 'bienesraices_crud');
-
-
-    } else if ($numero == 3) { 
+    } else if ($numero == 3) {
         require  '../../vendor/autoload.php';
         $dotenv = Dotenv\Dotenv::createImmutable('../../');
         $dotenv->load();
         $password = $_ENV['PASSWORD'];
         $db = mysqli_connect('localhost', 'root', $password, 'bienesraices_crud');
-    } else if ($numero == 4 ) {
+    } else if ($numero == 4) {
         require "./vendor/autoload.php";
         $dotenv = Dotenv\Dotenv::createImmutable('./');
         $dotenv->load();
         $password = $_ENV['PASSWORD'];
         $db = mysqli_connect('localhost', 'root', $password, 'bienesraices_crud');
-    }
-
-    else {
+    } else {
         require('../vendor/autoload.php');
         $dotenv = Dotenv\Dotenv::createImmutable('../');
         $dotenv->load();
