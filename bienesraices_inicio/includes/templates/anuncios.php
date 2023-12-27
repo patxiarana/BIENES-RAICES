@@ -2,9 +2,11 @@
 <?php 
 //Importar la base de datos 
 require  '../config/database.php' ; 
+$limite = 4  ;
 
-$db = conectarDB(1) ; 
-$limite = 4  ; 
+$db = conectarDB(4) ; 
+ 
+
 //consultar 
 $query = "SELECT * FROM propiedades LIMIT $limite" ; 
 

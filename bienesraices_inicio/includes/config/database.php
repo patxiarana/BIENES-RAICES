@@ -27,7 +27,7 @@ function conectarDB($numero = null): mysqli
         $dotenv->load();
         $password = $_ENV['PASSWORD'];
         $db = mysqli_connect('localhost', 'root', $password, 'bienesraices_crud');
-    } else {
+    }   else {
         require('../vendor/autoload.php');
         $dotenv = Dotenv\Dotenv::createImmutable('../');
         $dotenv->load();

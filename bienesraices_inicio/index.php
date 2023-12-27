@@ -33,18 +33,18 @@ incluirTemplate('header', $inicio = true);
 
     <?php /*
     $limite = 3;
-    include './includes/templates/anuncios.php'*/
-    ?>
+    include './includes/templates/anuncios.php'
+    */?>
 
     <div class="alinear-derecha">
-        <a href="anuncios.html" class="boton-verde">Ver Todas</a>
+        <a href="anuncios.php" class="boton-verde">Ver Todas</a>
     </div>
 </section>
 
 <section class="imagen-contacto">
     <h2>Encuntra la casa de tus sueños</h2>
     <p>Llena el formulario de contacto y un asesor se pondra en contacto con tigo a la brevedad</p>
-    <a href="contacto.html" class="boton-amarillo">Contactanos</a>
+    <a href="contacto.php" class="boton-amarillo">Contactanos</a>
 </section>
 
 <div class="contenedor seccion  seccion-inferior">
